@@ -1,0 +1,162 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vulnerabilityAssessments_Default_storageContainerPath": {
+            "type": "SecureString"
+        },
+        "workspaces_synapsys_demo_name": {
+            "defaultValue": "synapsys-demo",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Synapse/workspaces",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[parameters('workspaces_synapsys_demo_name')]",
+            "location": "centralindia",
+            "identity": {
+                "principalId": "d7eeb55a-92db-4d95-ba37-c42badc1a9b5",
+                "tenantId": "5a709812-b5ad-432f-8d87-1291a1d51433",
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "encryption": {
+                    "cmk": {
+                        "key": {
+                            "name": "default",
+                            "keyVaultUrl": "https://ayush-key-vault.vault.azure.net/keys/synapsys-key"
+                        }
+                    }
+                },
+                "managedVirtualNetwork": "default",
+                "connectivityEndpoints": {
+                    "web": "[concat('https://web.azuresynapse.net?workspace=%2fsubscriptions%2f82da41e7-dfc6-4822-87b9-bd64c2752347%2fresourceGroups%2fAzure-DevOps%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2f', parameters('workspaces_synapsys_demo_name'))]",
+                    "dev": "[concat('https://', parameters('workspaces_synapsys_demo_name'), '.dev.azuresynapse.net')]",
+                    "sqlOnDemand": "[concat(parameters('workspaces_synapsys_demo_name'), '-ondemand.sql.azuresynapse.net')]",
+                    "sql": "[concat(parameters('workspaces_synapsys_demo_name'), '.sql.azuresynapse.net')]"
+                },
+                "managedResourceGroupName": "synapseworkspace-managedrg-155f1d1a-cf12-4ec0-a443-d8513b5fca08",
+                "defaultDataLakeStorage": {
+                    "accountUrl": "https://synapsysstorage.dfs.core.windows.net",
+                    "filesystem": "demos"
+                },
+                "sqlAdministratorLogin": "ayush",
+                "privateEndpointConnections": [],
+                "managedVirtualNetworkSettings": {
+                    "preventDataExfiltration": false,
+                    "allowedAadTenantIdsForLinking": []
+                },
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/auditingSettings",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[concat(parameters('workspaces_synapsys_demo_name'), '/Default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_synapsys_demo_name'))]"
+            ],
+            "properties": {
+                "retentionDays": 0,
+                "auditActionsAndGroups": [],
+                "isStorageSecondaryKeyInUse": false,
+                "isAzureMonitorTargetEnabled": false,
+                "state": "Disabled",
+                "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/extendedAuditingSettings",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[concat(parameters('workspaces_synapsys_demo_name'), '/Default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_synapsys_demo_name'))]"
+            ],
+            "properties": {
+                "retentionDays": 0,
+                "auditActionsAndGroups": [],
+                "isStorageSecondaryKeyInUse": false,
+                "isAzureMonitorTargetEnabled": false,
+                "state": "Disabled",
+                "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/firewallRules",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[concat(parameters('workspaces_synapsys_demo_name'), '/allowAll')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_synapsys_demo_name'))]"
+            ],
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "255.255.255.255"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/integrationruntimes",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[concat(parameters('workspaces_synapsys_demo_name'), '/AutoResolveIntegrationRuntime')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_synapsys_demo_name'))]"
+            ],
+            "properties": {
+                "type": "Managed",
+                "typeProperties": {
+                    "computeProperties": {
+                        "location": "AutoResolve"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/keys",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[concat(parameters('workspaces_synapsys_demo_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_synapsys_demo_name'))]"
+            ],
+            "properties": {
+                "keyVaultUrl": "https://ayush-key-vault.vault.azure.net/keys/synapsys-key",
+                "isActiveCMK": false
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/securityAlertPolicies",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[concat(parameters('workspaces_synapsys_demo_name'), '/Default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_synapsys_demo_name'))]"
+            ],
+            "properties": {
+                "state": "Disabled",
+                "disabledAlerts": [
+                    ""
+                ],
+                "emailAddresses": [
+                    ""
+                ],
+                "emailAccountAdmins": false,
+                "retentionDays": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/vulnerabilityAssessments",
+            "apiVersion": "2021-04-01-preview",
+            "name": "[concat(parameters('workspaces_synapsys_demo_name'), '/Default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_synapsys_demo_name'))]"
+            ],
+            "properties": {
+                "recurringScans": {
+                    "isEnabled": false,
+                    "emailSubscriptionAdmins": true
+                },
+                "storageContainerPath": "[parameters('vulnerabilityAssessments_Default_storageContainerPath')]"
+            }
+        }
+    ]
+}
