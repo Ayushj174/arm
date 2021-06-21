@@ -22,7 +22,6 @@ steps:
     csmFile: 'template.json'
     csmParametersFile: 'parameters.json'
     deploymentMode: 'Incremental'
-
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
