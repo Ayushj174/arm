@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  tasks:
+    - name: Create resource group
+      azure_rm_resourcegroup:
+        name: ansible-infra
+        location: Central India
+    - name: Create Ansible Key Vault
+      azure_rm_keyvault:
+        resource_group: ansible-infra
+        vault_name: ansibleKeyVaultDEV
+        vault_tenant: 5a709812-b5ad-432f-8d87-1291a1d51433
+        enabled_for_deployment: yes
+        sku:
+          name: standard
+        access_policies:
+          - tenant_id: 5a709812-b5ad-432f-8d87-1291a1d51433
+            object_id: c1486d62-7903-4719-95af-812240313fdb
+            secrets:
+              - get
+              - list
+              - set
