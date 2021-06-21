@@ -25,7 +25,7 @@ steps:
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
-    playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)'
+    playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/azure-key.yml'
     inventoriesAgentMachine: 'noInventory'
 
 
