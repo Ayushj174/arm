@@ -10,7 +10,7 @@ pool:
   name: selfhosted
 
 steps:
-- task: AzureResourceManagerTemplateDeployment@3
+#- task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'Free Trial(82da41e7-dfc6-4822-87b9-bd64c2752347)'
@@ -22,6 +22,12 @@ steps:
     csmFile: 'template.json'
     csmParametersFile: 'parameters.json'
     deploymentMode: 'Incremental'
+
+- task: Ansible@0
+  inputs:
+    ansibleInterface: 'agentMachine'
+    playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)'
+    inventoriesAgentMachine: 'noInventory'
 
 
     
