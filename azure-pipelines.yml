@@ -11,17 +11,17 @@ pool:
 
 steps:
 #- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'Free Trial(82da41e7-dfc6-4822-87b9-bd64c2752347)'
-    subscriptionId: '82da41e7-dfc6-4822-87b9-bd64c2752347'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Azure-DevOps'
-    location: 'Central India'
-    templateLocation: 'Linked artifact'
-    csmFile: 'template.json'
-    csmParametersFile: 'parameters.json'
-    deploymentMode: 'Incremental'
+#  inputs:
+#    deploymentScope: 'Resource Group'
+#    azureResourceManagerConnection: 'Free Trial(82da41e7-dfc6-4822-87b9-bd64c2752347)'
+#    subscriptionId: '82da41e7-dfc6-4822-87b9-bd64c2752347'
+#    action: 'Create Or Update Resource Group'
+#    resourceGroupName: 'Azure-DevOps'
+#    location: 'Central India'
+#    templateLocation: 'Linked artifact'
+#    csmFile: 'template.json'
+#    csmParametersFile: 'parameters.json'
+#    deploymentMode: 'Incremental'
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
