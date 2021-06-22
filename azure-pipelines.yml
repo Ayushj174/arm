@@ -26,6 +26,7 @@ steps:
   inputs:
     ansibleInterface: 'agentMachine'
     playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/azure-key.yml'
+    failOnStdErr: false
     inventoriesAgentMachine: 'noInventory'
 
 
