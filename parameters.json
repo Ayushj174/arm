@@ -2,11 +2,80 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "vulnerabilityAssessments_Default_storageContainerPath": {
-            "value": null
+        "name": {
+            "value": "synapsys-demo"
         },
-        "workspaces_synapsys_demo_name": {
-            "value": null
+        "location": {
+            "value": "Central India"
+        },
+        "defaultDataLakeStorageAccountName": {
+            "value": "synapsys-storage"
+        },
+        "defaultDataLakeStorageFilesystemName": {
+            "value": "demos"
+        },
+        "sqlAdministratorLogin": {
+            "value": "sqladminuser"
+        },
+        "sqlAdministratorLoginPassword": {
+            "value": "AdminGS543"
+        },
+        "setWorkspaceIdentityRbacOnStorageAccount": {
+            "value": true
+        },
+        "allowAllConnections": {
+            "value": true
+        },
+        "grantWorkspaceIdentityControlForSql": {
+            "value": "Enabled"
+        },
+        "managedVirtualNetwork": {
+            "value": "ayush"
+        },
+        "tagValues": {
+            "value": {}
+        },
+        "storageSubscriptionID": {
+            "value": "82da41e7-dfc6-4822-87b9-bd64c2752347"
+        },
+        "storageResourceGroupName": {
+            "value": "Azure-DevOps"
+        },
+        "storageLocation": {
+            "value": "Central India"
+        },
+        "storageRoleUniqueId": {
+            "value": ""
+        },
+        "isNewStorageAccount": {
+            "value": false
+        },
+        "isNewFileSystemOnly": {
+            "value": false
+        },
+        "adlaResourceId": {
+            "value": "adla-storage"
+        },
+        "storageAccessTier": {
+            "value": "Hot"
+        },
+        "storageAccountType": {
+            "value": "Standard_RAGRS"
+        },
+        "storageSupportsHttpsTrafficOnly": {
+            "value": true
+        },
+        "storageKind": {
+            "value": "StorageV2"
+        },
+        "storageIsHnsEnabled": {
+            "value": true
+        },
+        "userObjectId": {
+            "value": "f399edce-5b1b-4085-bd6c-d2bbdcd8296a"
+        },
+        "setSbdcRbacOnStorageAccount": {
+            "value": true
         }
     }
 }
