@@ -12,7 +12,7 @@ pool:
 stages:
 - stage: CIpipeline
   jobs:
-  - job: Build N Publish
+  - job: BuildNPublish
     steps:
     - task: PublishBuildArtifacts@1
       inputs:
