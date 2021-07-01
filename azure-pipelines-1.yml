@@ -14,15 +14,17 @@ stages:
   jobs:
   - job: BuildNPublish
     steps:
-    - task: PublishBuildArtifacts@1
+    - task: CmdLine@2
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
-      
+        script: 'sh arm.sh'
     - task: CopyFiles@2
       inputs:
         SourceFolder: '.'
         Contents: '*.txt'
         TargetFolder: '$(build.artifactsstagingdirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 
