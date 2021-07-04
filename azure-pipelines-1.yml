@@ -24,7 +24,7 @@ stages:
         TargetFolder: '$(build.artifactsstagingdirectory)'
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        PathtoPublish: '$(build.artifactsstagingdirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
