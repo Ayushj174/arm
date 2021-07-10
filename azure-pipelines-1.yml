@@ -33,16 +33,9 @@ stages:
         publishLocation: 'Container'
     - task: CmdLine@2
       inputs:
-        script: 'ls $(Build.ArtifactStagingDirectory)'
+        script: |
+          cd '$(build.artifactsstagingdirectory)'
+          ls
     
-    - task: UniversalPackages@0
-      inputs:
-        command: 'publish'
-        publishDirectory: '$(Build.ArtifactStagingDirectory)'
-        feedsToUsePublish: 'internal'
-        vstsFeedPublish: '07c95003-8ac1-41f0-a09e-cf6e7bd4a1e6/58821c68-5826-4da3-8af9-9e0df9e38c28'
-        vstsFeedPackagePublish: '*'
-        versionOption: 'custom'
-        versionPublish: '1.0'
     
     
