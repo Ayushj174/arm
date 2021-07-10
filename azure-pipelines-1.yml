@@ -19,7 +19,7 @@ stages:
         script: 'sh arm.sh'
     - task: CmdLine@2
       inputs:
-        script: 'ls'
+        script: 'pwd ls'
     - task: CopyFiles@2
       inputs:
         SourceFolder: '.'
