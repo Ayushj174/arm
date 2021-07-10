@@ -26,9 +26,7 @@ stages:
     
     - task: CmdLine@2
       inputs:
-        script: 
-          pwd
-          ls
+        script: 'pwd'
         workingDirectory: '$(System.ArtifactsDirectory)'
         
 
