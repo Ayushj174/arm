@@ -25,9 +25,8 @@ stages:
         vstsPackageVersion: '5.0.0'
     - task: CmdLine@2
       inputs:
-        script: |
-          cd $(Build.ArtifactStagingDirectory)
-          ls
+        script: 'ls'
+        
 
     
 
