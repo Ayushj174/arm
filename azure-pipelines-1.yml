@@ -33,7 +33,7 @@ stages:
         publishLocation: 'Container'
     - task: CmdLine@2
       inputs:
-        script: 'ls ''$(Build.ArtifactStagingDirectory)'''
+        script: 'ls $(Build.ArtifactStagingDirectory)'
     
     - task: UniversalPackages@0
       inputs:
