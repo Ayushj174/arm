@@ -27,7 +27,7 @@ stages:
     - task: CmdLine@2
       inputs:
         script: 'ls'
-        workingDirectory: '$(Build.ArtifactStagingDirectory)'
+        workingDirectory: '$(System.ArtifactsDirectory)'
         
 
     
