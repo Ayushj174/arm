@@ -15,14 +15,15 @@ stages:
   - job: BuildNPublish
     steps:
     
-    - task: UniversalPackages@0
+    - task: DownloadPackage@1
       inputs:
-        command: 'download'
-        downloadDirectory: '$(Build.ArtifactStagingDirectory)'
-        feedsToUse: 'internal'
-        vstsFeed: '07c95003-8ac1-41f0-a09e-cf6e7bd4a1e6/58821c68-5826-4da3-8af9-9e0df9e38c28'
-        vstsFeedPackage: '6cc28321-8aaa-4cc6-a139-0525ea30ecae'
-        vstsPackageVersion: '5.0.0'
+        packageType: 'upack'
+        feed: '07c95003-8ac1-41f0-a09e-cf6e7bd4a1e6/58821c68-5826-4da3-8af9-9e0df9e38c28'
+        view: '30c3ead8-9f4a-4338-a7cb-8230b45a5a37'
+        definition: '6cc28321-8aaa-4cc6-a139-0525ea30ecae'
+        version: '5.0.0'
+        downloadPath: '$(System.ArtifactsDirectory)'
+    
     - task: CmdLine@2
       inputs:
         script: 'ls'
