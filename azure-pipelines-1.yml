@@ -35,7 +35,7 @@ stages:
       inputs:
         azureSubscription: 'Free Trial(82da41e7-dfc6-4822-87b9-bd64c2752347)'
         scriptType: 'bash'
-        scriptLocation: 'scriptPath'
+        scriptLocation: 'script.sh'
         scriptPath: '$(System.DefaultWorkingDirectory)'
     
     
