@@ -31,11 +31,13 @@ stages:
         PathtoPublish: '$(build.artifactsstagingdirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
-    - task: AzureCLI@2
+    - task: UniversalPackages@0
       inputs:
-        azureSubscription: 'Free Trial(82da41e7-dfc6-4822-87b9-bd64c2752347)'
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: 'sh script.sh'
+        command: 'publish'
+        publishDirectory: '$(Build.ArtifactStagingDirectory)'
+        feedsToUsePublish: 'internal'
+        vstsFeedPublish: '07c95003-8ac1-41f0-a09e-cf6e7bd4a1e6/58821c68-5826-4da3-8af9-9e0df9e38c28'
+        vstsFeedPackagePublish: '*'
+        versionOption: 'patch'
     
     
