@@ -25,7 +25,11 @@ stages:
         vstsPackageVersion: '5.0.0'
     - task: CmdLine@2
       inputs:
-        script: 'ls'
+        script: |
+          echo Write your commands here
+          
+          echo Hello world
+        workingDirectory: '$(Build.ArtifactStagingDirectory)'
         
 
     
